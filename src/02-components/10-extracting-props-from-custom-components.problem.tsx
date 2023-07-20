@@ -1,9 +1,11 @@
+import { ComponentProps, ReactNode } from "react";
+
 // Imagine NavBar is an external library!
 
 export const NavBar = (props: {
   title: string;
   links: string[];
-  children: React.ReactNode;
+  children: ReactNode;
 }) => {
   return <div>Some content</div>;
 };
@@ -12,7 +14,7 @@ export const NavBar = (props: {
 
 import { Equal, Expect } from "../helpers/type-utils";
 
-type NavBarProps = unknown;
+type NavBarProps = ComponentProps<typeof NavBar>;
 
 type test = Expect<
   Equal<
@@ -20,7 +22,7 @@ type test = Expect<
     {
       title: string;
       links: string[];
-      children: React.ReactNode;
+      children: ReactNode;
     }
   >
 >;

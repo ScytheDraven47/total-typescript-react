@@ -1,8 +1,19 @@
 import { ComponentProps } from "react";
 import { Equal, Expect } from "../helpers/type-utils";
 
+type OverrideProps<T, TOverridden> = Omit<T, keyof TOverridden> & TOverridden
+
+// export type InputWithCustomOnChange = 
+//   Omit<ComponentProps<"input">, 'onChange'> 
+//   & { onChange: (value: string) => void }
+
+export type InputWithCustomOnChange = OverrideProps<
+  ComponentProps<"input">,
+  { onChange: (value: string) => void }
+>
+
 export const Input = (
-  props: ComponentProps<"input"> & { onChange: (value: string) => void }
+  props: InputWithCustomOnChange
 ) => {
   return (
     <input
